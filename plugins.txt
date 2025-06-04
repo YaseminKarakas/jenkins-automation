@@ -1,4 +1,4 @@
 git:latest
 workflow-aggregator:latest
 configuration-as-code:latest
-github;latest
+github:latest
