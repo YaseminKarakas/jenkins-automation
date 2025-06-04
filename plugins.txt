@@ -1,4 +1,7 @@
-git:latest
-workflow-aggregator:latest
-configuration-as-code:latest
-github:latest
+docker-workflow
+workflow-aggregator
+git
+github
+credentials-binding
+docker-commons
+pipeline-aws
