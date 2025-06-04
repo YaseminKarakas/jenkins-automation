@@ -2,7 +2,8 @@ credentials:
   system:
     domainCredentials:
       - credentials:
-          - usernamePassword:
+          - string:
+              scope: GLOBAL
               id: "github-creds"
-              username: "${GITHUB_USERNAME}"
-              password: "${GITHUB_PAT}" 
+              secret: "${GITHUB_PAT}"
+              description: "GitHub Personal Access Token"
