@@ -1,0 +1,8 @@
+credentials:
+  system:
+    domainCredentials:
+      - credentials:
+          - usernamePassword:
+              id: "github-creds"
+              username: "${GITHUB_USERNAME}"
+              password: "${GITHUB_PAT}" 
