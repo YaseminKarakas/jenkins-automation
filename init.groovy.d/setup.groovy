@@ -3,6 +3,8 @@ import org.jenkinsci.plugins.workflow.job.WorkflowJob
 import org.jenkinsci.plugins.workflow.cps.CpsScmFlowDefinition
 import hudson.plugins.git.*
 import com.cloudbees.plugins.credentials.*
+import org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty
+import com.cloudbees.jenkins.GitHubPushTrigger
 
 def jenkins = Jenkins.getInstanceOrNull()
 if (jenkins != null) {
@@ -24,9 +26,9 @@ if (jenkins != null) {
         job.definition = flowDefinition
 
         // Add GitHub trigger if you want auto-builds on push
-        job.addTrigger(new org.jenkinsci.plugins.workflow.job.properties.PipelineTriggersJobProperty([
-            new com.cloudbees.jenkins.GitHubPushTrigger()
-        ]))
+        def trigger = new GitHubPushTrigger()
+        def triggersProperty = new PipelineTriggersJobProperty([trigger])
+        job.addProperty(triggersProperty)
 
         job.save()
     }
