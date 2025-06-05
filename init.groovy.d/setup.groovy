@@ -16,7 +16,7 @@ if (jenkins != null) {
         def repoURL = "https://github.com/YaseminKarakas/webserver-with-jenkins.git"
 
         def gitSCM = new GitSCM(
-            [new UserRemoteConfig(repoURL, null, null, null)],
+            [new UserRemoteConfig(repoURL, null, null, null)], // include credentials if needed
             [new BranchSpec("*/main")],
             false, [], null, null, []
         )
@@ -24,11 +24,11 @@ if (jenkins != null) {
         def flowDefinition = new CpsScmFlowDefinition(gitSCM, "Jenkinsfile")
         job.definition = flowDefinition
 
-        // Remove GitHubPushTrigger entirely
+        // Add GitHub trigger if you want auto-builds on push
+        def trigger = new GitHubPushTrigger()
+        def triggersProperty = new PipelineTriggersJobProperty([trigger])
+        job.addProperty(triggersProperty)
 
         job.save()
-
-        // Trigger initial build
-        job.scheduleBuild2(0)
     }
 }

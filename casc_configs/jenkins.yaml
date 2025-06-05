@@ -2,8 +2,9 @@ credentials:
   system:
     domainCredentials:
       - credentials:
-          - string:
+          - aws:
               scope: GLOBAL
-              id: "github-creds"
-              secret: "${GITHUB_PAT}"
-              description: "GitHub Personal Access Token"
+              id: "aws-creds"
+              accessKey: "${AWS_ACCESS_KEY_ID}"
+              secretKey: "${AWS_SECRET_ACCESS_KEY}"
+              description: "AWS access key credentials for Jenkins to use"
