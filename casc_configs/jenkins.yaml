@@ -1,10 +1,11 @@
-credentials:
-  system:
-    domainCredentials:
-      - credentials:
-          - aws:
-              scope: GLOBAL
-              id: "aws-creds"
-              accessKey: "${AWS_ACCESS_KEY_ID}"
-              secretKey: "${AWS_SECRET_ACCESS_KEY}"
-              description: "AWS access key credentials for Jenkins to use"
+jenkins:
+  credentials:
+    system:
+      domainCredentials:
+        - credentials:
+            - aws:
+                scope: GLOBAL
+                id: "aws-creds"
+                accessKey: "${AWS_ACCESS_KEY_ID}"
+                secretKey: "${AWS_SECRET_ACCESS_KEY}"
+                description: "AWS access key credentials for Jenkins to use"
