@@ -14,10 +14,9 @@ if (jenkins != null) {
         def job = jenkins.createProject(WorkflowJob, jobName)
 
         def repoURL = "https://github.com/YaseminKarakas/webserver-with-jenkins.git"
-        def credentialsId = "github-creds" // This must match what you define in Jenkins
 
         def gitSCM = new GitSCM(
-            [new UserRemoteConfig(repoURL, null, null, credentialsId)], // include credentials if needed
+            [new UserRemoteConfig(repoURL, null, null, null)],
             [new BranchSpec("*/main")],
             false, [], null, null, []
         )
@@ -25,11 +24,11 @@ if (jenkins != null) {
         def flowDefinition = new CpsScmFlowDefinition(gitSCM, "Jenkinsfile")
         job.definition = flowDefinition
 
-        // Add GitHub trigger if you want auto-builds on push
-        def trigger = new GitHubPushTrigger()
-        def triggersProperty = new PipelineTriggersJobProperty([trigger])
-        job.addProperty(triggersProperty)
+        // Remove GitHubPushTrigger entirely
 
         job.save()
+
+        // Trigger initial build
+        job.scheduleBuild2(0)
     }
 }
